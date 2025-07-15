@@ -1,0 +1,256 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Stream Video SDK CSS Variables */
+:root {
+  --str-video-call-tile-active-speaker-border-color: #015fff; /* Changed to blue */
+  --str-video-call-tile-active-speaker-border-width: 4px; /* Adjust as needed */
+  --str-video-call-tile-active-speaker-animation-duration: 1s; /* Adjust as needed */
+  --str-video-call-tile-active-speaker-animation-timing-function: ease-in-out; /* Adjust as needed */
+
+  /* General border color for video tiles */
+  --str-video-border-color: #015fff; /* Changed to blue */
+
+  /* Overrides for button and other primary blue elements */
+  --str-video__button-primary-active: #015fff; /* Changed to blue */
+  --str-video__button-primary-background: #015fff; /* Changed to blue */
+  --str-video__button-primary-hover: #0047cc; /* Slightly darker blue for hover state */
+  --str-video__button-primary-text-color: #ffffff; /* Ensures text on primary buttons is white */
+
+  /* General icon color (if not covered by button primary) */
+  --str-video__icon-color: #015fff; /* Changed to blue */
+
+  /* General primary and accent colors for Stream components */
+  --str-video__primary-color: #015fff; /* Changed to blue */
+  --str-video__accent-color: #015fff; /* Changed to blue */
+
+  /* NEW: Tooltip background color */
+  --str-video__tooltip--background-color: #19232d; /* Updated to new dark color */
+}
+
+/* Soft glow effect for active speakers */
+.str-video__participant-tile--active-speaker {
+  box-shadow: 0 0 15px 5px rgba(1, 95, 255, 0.7); /* Soft glow using new primary color with transparency */
+  transition: box-shadow 0.3s ease-in-out; /* Smooth transition for the glow */
+}
+
+/* Direct CSS overrides for borders and outlines with higher specificity */
+.str-video__participant-view,
+.str-video__participant-tile,
+.str-video__call__participants__participant-tile {
+  border-color: #015fff !important; /* Force border color to blue */
+  outline-color: #015fff !important; /* Force outline color to blue, if any */
+}
+
+/* Ensure focus/active states also use the primary color for outlines/shadows */
+.str-video__participant-view:focus-within,
+.str-video__participant-tile:focus-within,
+.str-video__participant-view--active,
+.str-video__participant-tile--active {
+  outline-color: #015fff !important;
+  box-shadow: 0 0 0 4px #015fff !important; /* If it's an outline-like shadow */
+}
+
+/* NEW: Highly aggressive direct CSS override for avatar background */
+.str-video__avatar,
+.str-video__avatar__image,
+.str-video__avatar--fallback,
+.str-video__avatar__placeholder {
+  /* Targeting more potential avatar classes */
+  background-color: #015fff !important; /* Force avatar background to blue */
+}
+
+/* Ensure text color inside avatar remains white */
+.str-video__avatar__text {
+  color: #ffffff !important;
+}
+
+/* NEW: Highly aggressive direct CSS override for volume indicator/equalizer */
+.str-video__volume-indicator,
+.str-video__volume-indicator__bar,
+.str-video__volume-indicator__icon,
+.str-video__volume-indicator__svg path /* Targeting SVG paths for icons */,
+.str-video__volume-indicator__svg rect /* Targeting SVG rects for bars */,
+.str-video__volume-indicator__svg polygon {
+  /* Targeting SVG polygons if used */
+  color: #015fff !important; /* For text-based icons */
+  fill: #015fff !important; /* For SVG icons */
+  stroke: #015fff !important; /* For SVG strokes */
+}
+
+/* NEW: Override for the small volume bars in the corner of the video card */
+.str-video__participant-tile__volume-indicator {
+  background-color: #015fff !important; /* Force the background of the volume bars to blue */
+}
+
+/* REVISED: Less aggressive overrides for dropdown menu background and text color */
+/* Removed !important from background and color to allow Stream's internal styles to take precedence if needed,
+   but still providing a dark background and white text as a default. */
+.str-video__menu,
+.str-video__menu-items,
+.str-video__popover,
+.str-video__menu-list {
+  background: #19232d; /* Updated to new dark color */
+  color: #ffffff; /* Ensure text is readable on dark background */
+  z-index: 9999 !important; /* Force to top for all Stream menus/popovers */
+}
+
+.str-video__menu-item,
+.str-video__menu-item:hover,
+.str-video__menu-item--active {
+  background: #19232d; /* Updated to new dark color */
+  color: #ffffff; /* Ensure text is readable on dark background */
+}
+
+.str-video__menu-item-text /* Targeting text directly */,
+.str-video__menu-item-icon /* Targeting icons within menu items */ {
+  color: #ffffff; /* Ensure text is readable on dark background */
+}
+
+/* NEW: EXTREMELY AGGRESSIVE OVERRIDE FOR THE MAIN VIDEO CARD BACKGROUND COLOR */
+/* Using 'background' to override all background properties */
+.str-video__participant-tile,
+.str-video__participant-view,
+.str-video__participant-tile__video-wrapper /* Common wrapper for video */,
+.str-video__participant-tile__media-stream {
+  /* Another potential wrapper */
+  background: #19232d !important; /* Updated to new dark color */
+}
+
+/* NEW: Direct override for tooltip background and pointer */
+.str-video__tooltip {
+  background: #19232d !important; /* Updated to new dark color */
+  color: #ffffff !important; /* Ensure text is readable */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3) !important; /* Add a subtle shadow */
+  border-radius: 8px !important; /* Added border-radius for a softer look */
+}
+
+.str-video__tooltip__arrow {
+  background: #19232d !important; /* Make the arrow match the tooltip background */
+  border-color: #19232d !important; /* Ensure borders match for the arrow */
+}
+
+/* NEW: Aggressive override for specific Stream meeting action buttons border-radius and icon size */
+.str-video__call-controls__button,
+.str-video__call-controls__button--toggle-audio,
+.str-video__call-controls__button--toggle-video,
+.str-video__call-controls__button--screen-share,
+.str-video__call-controls__button--participants,
+.str-video__call-controls__button--chat,
+.str-video__call-controls__button--record {
+  border-radius: 8px !important; /* Reduced border-radius to 8px */
+}
+
+/* Target icons within these buttons to make them slightly bigger */
+.str-video__call-controls__button .str-video__icon,
+.str-video__call-controls__button svg {
+  font-size: 1.25em !important; /* Increase icon size slightly */
+  width: 1.25em !important; /* Ensure SVG width scales */
+  height: 1.25em !important; /* Ensure SVG height scales */
+}
+
+/* NEW: Ensure the end call button has consistent padding and size */
+.str-video__call-controls__button--end-call {
+  width: 56px !important; /* Set a consistent width */
+  height: 56px !important; /* Set a consistent height */
+  padding: 12px !important; /* Adjust padding to center the icon */
+  border-radius: 9999px !important; /* Make it fully circular */
+  display: flex !important; /* Ensure flex properties for centering */
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* Custom class for the blurred white stroke on the card */
+.blurred-white-stroke {
+  position: relative;
+  overflow: hidden; /* Ensures the pseudo-element is clipped to the card's shape */
+}
+
+.blurred-white-stroke::before {
+  content: "";
+  position: absolute;
+  /* Position slightly outside the card to create the stroke effect */
+  top: -16px;
+  left: -16px;
+  right: -16px;
+  bottom: -16px;
+  background: rgba(255, 255, 255, 0.5); /* Semi-transparent white for the stroke */
+  filter: blur(10px); /* Apply blur to the stroke */
+  z-index: -1; /* Place it behind the main card content */
+  border-radius: inherit; /* Inherit the border-radius from the parent card */
+}
+
+/* Shadcn UI variables */
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 47.4% 11.2%;
+
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.6% 91.4%;
+    --input: 214.3 31.6% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
