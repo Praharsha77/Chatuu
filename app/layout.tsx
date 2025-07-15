@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Vercel Meet',
+  title: 'Chatuu 🔥',
   description: 'A simple video calling app',
   generator: 'Next.js',
 }
